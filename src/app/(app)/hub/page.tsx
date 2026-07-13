@@ -481,12 +481,10 @@ export default function HubPage() {
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           {pageItems.map((s) => {
             const Icon = s.icon;
-            return (
-              <Link
-                key={s.slug}
-                href={`/${s.slug}`}
-                className="group flex flex-col rounded-2xl bg-white/[0.04] p-4 ring-1 ring-white/10 transition duration-200 hover:-translate-y-0.5 hover:bg-white/[0.08] hover:ring-white/25"
-              >
+            const cardClass =
+              "group flex flex-col rounded-2xl bg-white/[0.04] p-4 ring-1 ring-white/10 transition duration-200 hover:-translate-y-0.5 hover:bg-white/[0.08] hover:ring-white/25";
+            const inner = (
+              <>
                 <div className="flex items-center gap-3">
                   <span
                     className="grid h-11 w-11 shrink-0 place-items-center rounded-xl transition group-hover:scale-105"
@@ -494,10 +492,19 @@ export default function HubPage() {
                   >
                     <Icon className="h-6 w-6" />
                   </span>
-                  <p className="min-w-0 flex-1 font-bold leading-tight">
-                    {s.name}
-                  </p>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-white/40 transition group-hover:translate-x-1 group-hover:text-white" />
+                  <div className="min-w-0 flex-1">
+                    <p className="font-bold leading-tight">{s.name}</p>
+                    {s.externalUrl && (
+                      <span className="text-[10px] font-semibold uppercase tracking-wide text-amber-400">
+                        ao vivo
+                      </span>
+                    )}
+                  </div>
+                  {s.externalUrl ? (
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-white/40 transition group-hover:text-white" />
+                  ) : (
+                    <ArrowRight className="h-4 w-4 shrink-0 text-white/40 transition group-hover:translate-x-1 group-hover:text-white" />
+                  )}
                 </div>
                 <p className="mt-2 line-clamp-2 text-sm text-white/60">
                   {s.description}
@@ -512,6 +519,21 @@ export default function HubPage() {
                     </span>
                   ))}
                 </div>
+              </>
+            );
+            return s.externalUrl ? (
+              <a
+                key={s.slug}
+                href={s.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cardClass}
+              >
+                {inner}
+              </a>
+            ) : (
+              <Link key={s.slug} href={`/${s.slug}`} className={cardClass}>
+                {inner}
               </Link>
             );
           })}

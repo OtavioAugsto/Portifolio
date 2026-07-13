@@ -13,6 +13,7 @@ import {
   Globe,
   PiggyBank,
   LifeBuoy,
+  Star,
   type LucideIcon,
 } from "lucide-react";
 
@@ -30,6 +31,8 @@ export type Service = {
   tags: string[];
   /** último acesso (texto exibido em "Últimos acessos") */
   lastAccess: string;
+  /** se definido, o card abre essa URL externa em nova aba (projeto real ao vivo) */
+  externalUrl?: string;
 };
 
 /**
@@ -96,6 +99,21 @@ export const SERVICES: Service[] = [
     usage: 6,
     tags: ["React", "Node.js", "MongoDB", "Chart.js"],
     lastAccess: "09/07 às 14:30",
+  },
+
+  // ===== projeto REAL =====
+  {
+    slug: "slider-craques-copa",
+    name: "Craques da Copa 2026",
+    short: "Copa 2026",
+    description:
+      "Slider interativo com os principais craques da Copa do Mundo 2026, com animações e design moderno.",
+    icon: Star,
+    color: "#f59e0b",
+    usage: 0,
+    tags: ["HTML", "CSS", "JavaScript"],
+    lastAccess: "13/07 às 10:00",
+    externalUrl: "https://slider-craques-copa.vercel.app",
   },
 
   // ===== projetos FAKE (só pra preencher o preview) — remover depois =====
