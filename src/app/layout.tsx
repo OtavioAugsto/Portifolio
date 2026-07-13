@@ -22,8 +22,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Klix — Hub de ferramentas",
-  description: "Seu hub central de projetos e ferramentas.",
+  title: "Portifólio de Projetos",
+  description: "Meu hub central de projetos, tecnologias e ideias.",
 };
 
 export default function RootLayout({
